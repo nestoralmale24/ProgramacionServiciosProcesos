@@ -6,7 +6,7 @@
 
 ### General Info
 ***
-Programacion de servicios y procesos
+Service and process programming subject.
 
 ## Technologies
 ***
