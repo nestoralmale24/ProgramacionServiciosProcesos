@@ -5,7 +5,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Pool implements Runnable {
+    /* VERAS QUE HE SEPARADO LAS ACCIONES PRINCIPALES EN DOS METODOS UNO PARA 
+    LAS IMAGENES Y OTRO PARA EL POOL, CREO QUE ASI ESTABA MEJOR ORGANIZADO Y EL FUNCIONAMIENTO NO CAMBIA */
 
+    //DECLARAMOS LO NECESARIO
     public static int[][][] Imagenes;
     public static int NumNucleos;
     public static double inicio, Tiempo;
@@ -31,6 +34,7 @@ public class Pool implements Runnable {
         ejecutarPool();
     }
 
+    //METODO DE ARRAY DE IMAGENES, NUCLEOS Y TIEMPO DE EJECUCION
     private static void inicializarImagenes() {
         Runtime runtime = Runtime.getRuntime();
         NumNucleos = runtime.availableProcessors();
@@ -54,6 +58,7 @@ public class Pool implements Runnable {
         for (int i = 1; i <= 30; i++) { // NUESTRO BUCLE EMPEZARA EN LA IMAGEN 1 Y TERMINARA EN LA 3O, ASI NOS EVITAMOS QUE VAYA DE 0 A 29
             executor.execute(new Pool(monitor, i, i - 1));
         }
+
         executor.shutdown();
         try {
             executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
